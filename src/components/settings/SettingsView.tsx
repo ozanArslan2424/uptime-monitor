@@ -1,5 +1,6 @@
 import * as Application from "expo-application";
 import { useRouter } from "expo-router";
+import { openBrowserAsync } from "expo-web-browser";
 import { Alert, Linking } from "react-native";
 
 import { SettingsPressableRow } from "@/components/settings/SettingsPressableRow";
@@ -85,17 +86,19 @@ export function SettingsView() {
 			<SettingsSection title="ABOUT">
 				<SettingsPressableRow
 					label="Privacy policy"
-					onPress={() => Linking.openURL(LINKS.privacyPolicy)}
+					onPress={() => openBrowserAsync(LINKS.privacyPolicy)}
 				/>
+
 				<SettingsPressableRow
 					label="Terms of use"
-					onPress={() => Linking.openURL(LINKS.termsOfUse)}
+					onPress={() => openBrowserAsync(LINKS.termsOfUse)}
 				/>
 
 				<SettingsPressableRow
 					label="Open-source licenses"
 					onPress={() => router.push("/licenses")}
 				/>
+
 				<SettingsPressableRow
 					label="Contact support"
 					onPress={() => Linking.openURL(`mailto:${LINKS.supportEmail}`)}

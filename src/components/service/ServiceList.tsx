@@ -57,11 +57,11 @@ export function ServiceList() {
 				<refresh-control refreshing={false} onRefresh={refresh} tintColor={styles.tint.color} />
 			}
 			ListEmptyComponent={<text style={styles.empty}>No services yet. Tap + to add one.</text>}
-			renderItem={(item) => (
+			renderItem={({ item }) => (
 				<ServiceRow
-					service={item.item}
-					lastCheck={newest(latestChecks.get(item.item.id), item.item.lastCheck)}
-					isChecking={checkingIds.has(item.item.id)}
+					service={item}
+					lastCheck={newest(latestChecks.get(item.id), item.lastCheck)}
+					isChecking={checkingIds.has(item.id)}
 					onConfirmDelete={handleConfirmDelete}
 				/>
 			)}

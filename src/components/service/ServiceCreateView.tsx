@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ServiceFormValues, ServiceForm } from "@/components/service/ServiceForm";
 import { Service } from "@/features/service/entity";
 import { getDatabase } from "@/lib/db";
+import { ensureNotificationPermission } from "@/lib/ensureNotificationPermission";
 
 export function ServiceCreateView() {
 	const router = useRouter();
@@ -24,6 +25,7 @@ export function ServiceCreateView() {
 			}),
 		);
 
+		await ensureNotificationPermission();
 		setFormKey((key) => key + 1);
 		router.navigate("/");
 	}

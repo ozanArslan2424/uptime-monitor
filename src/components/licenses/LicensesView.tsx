@@ -1,7 +1,7 @@
 import { FlatList } from "react-native";
 
 import { LicenseRow } from "@/components/licenses/LicenseRow";
-import { LICENSES } from "@/lib/licenses";
+import { LICENSES } from "@/lib/constants";
 
 export function LicensesView() {
 	const styles = styleSheet.useWithColorScheme();

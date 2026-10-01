@@ -1,4 +1,5 @@
 import "@/ignore-warnings";
+import "@/notifications";
 import "@/design-system";
 import { Stack } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";

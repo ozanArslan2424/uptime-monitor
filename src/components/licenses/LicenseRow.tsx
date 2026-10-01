@@ -2,7 +2,7 @@ import { SymbolView } from "expo-symbols";
 import { useState } from "react";
 
 import { FLEX_FIX } from "@/design-system";
-import type { License } from "@/lib/licenses";
+import { License } from "@/lib/constants";
 
 interface Props {
 	license: License;
