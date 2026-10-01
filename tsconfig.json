@@ -1,0 +1,14 @@
+{
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "@ozanarslan/native-jsx",
+		"strict": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"@/assets/*": ["./assets/*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
+	"exclude": ["scripts"]
+}

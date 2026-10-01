@@ -1,0 +1,40 @@
+{
+	"expo": {
+		"name": "Uptime Monitor",
+		"slug": "uptime-monitor",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"scheme": "uptimemonitor",
+		"userInterfaceStyle": "automatic",
+		"ios": {
+			"bundleIdentifier": "com.ozanarslan2424.uptimemonitor",
+			"infoPlist": {
+				"NSAppTransportSecurity": {
+					"NSAllowsArbitraryLoads": true
+				},
+				"ITSAppUsesNonExemptEncryption": false
+			}
+		},
+		"android": {
+			"predictiveBackGestureEnabled": false,
+			"package": "com.ozanarslan2424.uptimemonitor"
+		},
+		"web": {
+			"output": "static"
+		},
+		"plugins": [
+			"expo-router",
+			"expo-font",
+			"expo-image",
+			"expo-status-bar",
+			"expo-web-browser",
+			"expo-sqlite",
+			"expo-splash-screen",
+			["expo-build-properties", { "android": { "usesCleartextTraffic": true } }]
+		],
+		"experiments": {
+			"typedRoutes": true,
+			"reactCompiler": true
+		}
+	}
+}
