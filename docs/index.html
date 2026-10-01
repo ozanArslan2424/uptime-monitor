@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Uptime Monitor</title>
+		<meta name="description" content="Privacy policy and terms of use for Uptime Monitor." />
+		<style>
+			:root {
+				--bg: #f2f2f7;
+				--card: #ffffff;
+				--fg: #111114;
+				--muted: #6b6b73;
+				--border: #d9d9de;
+				--accent: #047857;
+				--up: #22c55e;
+				color-scheme: light dark;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg: #0b0b0d;
+					--card: #161619;
+					--fg: #ededef;
+					--muted: #8b8b93;
+					--border: #27272c;
+					--accent: #34d399;
+					--up: #4ade80;
+				}
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--fg);
+				font:
+					16px/1.55 system-ui,
+					-apple-system,
+					"Segoe UI",
+					Roboto,
+					sans-serif;
+			}
+
+			main {
+				max-width: 34rem;
+				margin: 0 auto;
+				padding: 4rem 1.25rem;
+			}
+
+			.status {
+				display: inline-flex;
+				align-items: center;
+				gap: 1rem;
+				font-size: 0.875rem;
+			}
+
+			.dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: var(--up);
+				box-shadow: 0 0 0 0 var(--up);
+				animation: pulse 2.4s ease-out infinite;
+			}
+
+			@keyframes pulse {
+				0% {
+					box-shadow: 0 0 0 0 color-mix(in srgb, var(--up) 60%, transparent);
+				}
+				70%,
+				100% {
+					box-shadow: 0 0 0 8px transparent;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.dot {
+					animation: none;
+				}
+			}
+
+			h1 {
+				margin: 0.75rem 0 0.5rem;
+				font-size: 2rem;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
+			}
+
+			p {
+				margin: 0 0 2rem;
+				color: var(--muted);
+			}
+
+			nav {
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				background: var(--card);
+				overflow: hidden;
+			}
+
+			nav a {
+				display: block;
+				padding: 0.9rem 1rem;
+				color: var(--fg);
+				text-decoration: none;
+				border-bottom: 1px solid var(--border);
+			}
+
+			nav a:last-child {
+				border-bottom: none;
+			}
+
+			nav a:hover {
+				color: var(--accent);
+			}
+
+			nav a:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: -2px;
+			}
+
+			footer {
+				margin-top: 2rem;
+				font-size: 0.875rem;
+				color: var(--muted);
+			}
+
+			footer a {
+				color: var(--accent);
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<span class="status">
+				<span class="dot" aria-hidden="true"></span>
+				<h1>Uptime Monitor</h1>
+			</span>
+			<p>
+				Monitor the availability of your HTTP services and get notified when one goes down or comes
+				back up.
+			</p>
+
+			<nav aria-label="Documents">
+				<a href="privacy">Privacy policy</a>
+				<a href="terms">Terms of use</a>
+			</nav>
+
+			<footer>
+				Questions? <a href="mailto:ozanarslanodtu@gmail.com">ozanarslanodtu@gmail.com</a>
+			</footer>
+		</main>
+	</body>
+</html>
