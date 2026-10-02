@@ -6,7 +6,7 @@ import { Service } from "@/features/service/entity";
 export class ServiceRepository {
 	constructor(private readonly db: SQLite.SQLiteDatabase) {}
 
-	async getEnabled(): Promise<Array<Service>> {
+	async getEnabled(): Promise<Service[]> {
 		const rows = await this.db.getAllAsync<typeof Service.ROW>(
 			`SELECT * FROM services WHERE enabled = 1`,
 		);

@@ -3,10 +3,14 @@ import { Service } from "@/features/service/entity";
 import { tryCatch } from "@/lib/tryCatch";
 
 function describeError(err: Error, aborted: boolean, service: Service): string {
-	if (aborted) return `Timed out after ${service.timeoutMs / 1000}s`;
+	if (aborted) {
+		return `Timed out after ${service.timeoutMs / 1000}s`;
+	}
 
 	const message = err.message;
-	if (/cleartext/i.test(message)) return "Plain HTTP is blocked by this device";
+	if (/cleartext/i.test(message)) {
+		return "Plain HTTP is blocked by this device";
+	}
 	if (
 		/unknownhost|unable to resolve|could not be found|enotfound|no address associated/i.test(
 			message,
@@ -14,10 +18,15 @@ function describeError(err: Error, aborted: boolean, service: Service): string {
 	) {
 		return "Host not found";
 	}
-	if (/econnrefused|connection refused|failed to connect/i.test(message))
+	if (/econnrefused|connection refused|failed to connect/i.test(message)) {
 		return "Connection refused";
-	if (/ssl|tls|certificate|handshake|trust anchor/i.test(message)) return "TLS/certificate error";
-	if (/network request failed/i.test(message)) return "Network error: offline or host unreachable";
+	}
+	if (/ssl|tls|certificate|handshake|trust anchor/i.test(message)) {
+		return "TLS/certificate error";
+	}
+	if (/network request failed/i.test(message)) {
+		return "Network error: offline or host unreachable";
+	}
 	return message;
 }
 

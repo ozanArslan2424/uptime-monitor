@@ -38,7 +38,7 @@ export class CheckRepository {
 		);
 	}
 
-	async getRecent(serviceId: Service["id"], limit: number): Promise<Array<Check>> {
+	async getRecent(serviceId: Service["id"], limit: number): Promise<Check[]> {
 		const rows = await this.db.getAllAsync<typeof Check.ROW>(
 			`SELECT * FROM checks WHERE serviceId = ? ORDER BY timestamp DESC LIMIT ?`,
 			serviceId,

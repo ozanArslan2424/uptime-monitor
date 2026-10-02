@@ -15,7 +15,9 @@ const STORAGE_KEY = "settings";
 
 const store = new ExternalStore<Settings>(() => {
 	const raw = Storage.getItemSync(STORAGE_KEY);
-	if (raw === null) return DEFAULT_SETTINGS;
+	if (raw === null) {
+		return DEFAULT_SETTINGS;
+	}
 	try {
 		return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
 	} catch {

@@ -136,8 +136,12 @@ function splitTopLevel(s: string): string[] {
 	let depth = 0;
 	let cur = "";
 	for (const ch of s) {
-		if (ch === "(") depth++;
-		if (ch === ")") depth--;
+		if (ch === "(") {
+			depth++;
+		}
+		if (ch === ")") {
+			depth--;
+		}
 		if (ch === "," && depth === 0) {
 			out.push(cur);
 			cur = "";
@@ -145,7 +149,9 @@ function splitTopLevel(s: string): string[] {
 			cur += ch;
 		}
 	}
-	if (cur.trim()) out.push(cur);
+	if (cur.trim()) {
+		out.push(cur);
+	}
 	return out;
 }
 
@@ -155,27 +161,34 @@ function parseDefault(raw: string, sqlType: string): unknown {
 		const n = Number(t);
 		return Number.isNaN(n) ? t : n;
 	}
-	if ((t.startsWith("'") && t.endsWith("'")) || (t.startsWith('"') && t.endsWith('"')))
+	if ((t.startsWith("'") && t.endsWith("'")) || (t.startsWith('"') && t.endsWith('"'))) {
 		return t.slice(1, -1);
+	}
 	return t;
 }
 
 function parseColumns(schema: string) {
 	const body = schema.slice(schema.indexOf("(") + 1, schema.lastIndexOf(")"));
-	const cols: Array<{
+	const cols: {
 		name: string;
 		notNull: boolean;
 		primaryKey: boolean;
 		hasDefault: boolean;
 		defaultValue: unknown;
-	}> = [];
+	}[] = [];
 
 	for (const raw of splitTopLevel(body)) {
 		const line = raw.trim();
-		if (!line) continue;
-		if (/^(PRIMARY KEY|FOREIGN KEY|UNIQUE|CHECK|CONSTRAINT)\b/i.test(line)) continue; // table-level constraint
+		if (!line) {
+			continue;
+		}
+		if (/^(PRIMARY KEY|FOREIGN KEY|UNIQUE|CHECK|CONSTRAINT)\b/i.test(line)) {
+			continue;
+		} // table-level constraint
 		const match = line.match(/^(\S+)\s+(\S+)/);
-		if (!match) continue;
+		if (!match) {
+			continue;
+		}
 		const [, name, sqlType] = match as [string, string, string];
 		const notNull = /NOT\s+NULL/i.test(line);
 		const primaryKey = /PRIMARY\s+KEY/i.test(line);

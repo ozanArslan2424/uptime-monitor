@@ -1,8 +1,8 @@
 import { SymbolView } from "expo-symbols";
 import { useState } from "react";
 
-import { FLEX_FIX } from "@/design-system";
 import { License } from "@/lib/constants";
+import { flex } from "@/lib/flex";
 
 interface Props {
 	license: License;
@@ -59,8 +59,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		backgroundColor: s.color.card,
 	},
 	header: {
-		...s.flex("flex-row", "items-center"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center"),
 		gap: s.spacing(3),
 	},
 	info: {

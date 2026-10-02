@@ -5,10 +5,10 @@ import ReanimatedSwipeable, {
 } from "react-native-gesture-handler/ReanimatedSwipeable";
 
 import { CheckDot } from "@/components/check/CheckDot";
-import { FLEX_FIX } from "@/design-system";
 import { Check } from "@/features/check/entity";
 import { Service } from "@/features/service/entity";
 import { useIntervalNow } from "@/hooks/useIntervalNow";
+import { flex } from "@/lib/flex";
 import { Maybe } from "@/lib/maybe";
 
 interface Props {
@@ -112,8 +112,7 @@ const action = Styles.defineStyle({
 
 const styleSheet = Styles.defineSheet((s) => ({
 	card: {
-		...s.flex("flex-row", "items-center"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center"),
 		gap: s.spacing(3),
 		padding: s.spacing(4),
 		borderBottomWidth: 0.5,

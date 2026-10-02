@@ -38,10 +38,14 @@ export function useAsync<A extends unknown[], T>(
 		setState((prev) => (prev.data ? success(prev.data) : pending()));
 
 		const [data, error] = await tryCatch(() => fnRef.current(...args));
-		if (id !== requestId.current) return;
+		if (id !== requestId.current) {
+			return;
+		}
 
 		if (error) {
-			if (__DEV__) console.error(error);
+			if (__DEV__) {
+				console.error(error);
+			}
 			setState(failure(error));
 			return;
 		}
@@ -57,15 +61,23 @@ export function useAsync<A extends unknown[], T>(
 
 	// Without reloadOnFocus: loads on mount and again whenever args change.
 	useEffect(() => {
-		if (__DEV__) console.log("[useAsync] useEffect", options.reloadOnFocus);
-		if (!options.reloadOnFocus) reload();
+		if (__DEV__) {
+			console.log("[useAsync] useEffect", options.reloadOnFocus);
+		}
+		if (!options.reloadOnFocus) {
+			reload();
+		}
 	}, [reload, options.reloadOnFocus]);
 
 	// With reloadOnFocus: loads on first focus, every refocus, and on args change while focused.
 	useFocusEffect(
 		useCallback(() => {
-			if (__DEV__) console.log("[useAsync] useFocusEffect", options.reloadOnFocus);
-			if (options.reloadOnFocus) reload();
+			if (__DEV__) {
+				console.log("[useAsync] useFocusEffect", options.reloadOnFocus);
+			}
+			if (options.reloadOnFocus) {
+				reload();
+			}
 		}, [reload, options.reloadOnFocus]),
 	);
 

@@ -1,4 +1,4 @@
-import { FLEX_FIX } from "@/design-system";
+import { flex } from "@/lib/flex";
 
 interface Props {
 	label: string;
@@ -19,8 +19,7 @@ export function SettingsSwitchRow(props: Props) {
 
 const styleSheet = Styles.defineSheet((s) => ({
 	row: {
-		...s.flex("flex-row", "items-center", "justify-between"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center", "justify-between"),
 		gap: s.spacing(3),
 		minHeight: 48,
 		paddingHorizontal: s.spacing(4),

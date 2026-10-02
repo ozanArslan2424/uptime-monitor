@@ -12,7 +12,9 @@ function isBlockedHttp(service: Service): boolean {
 
 /** Runs, saves and publishes a check. Returns undefined if this service is already being checked. */
 export async function runServiceCheck(service: Service): Promise<Check | undefined> {
-	if (isChecking(service.id)) return undefined;
+	if (isChecking(service.id)) {
+		return undefined;
+	}
 
 	startChecking(service.id);
 

@@ -12,7 +12,9 @@ function subscribe(intervalMs: number, listener: () => void) {
 		now = Date.now();
 		timer = setInterval(() => {
 			now = Date.now();
-			for (const notify of listeners) notify();
+			for (const notify of listeners) {
+				notify();
+			}
 		}, intervalMs);
 	}
 

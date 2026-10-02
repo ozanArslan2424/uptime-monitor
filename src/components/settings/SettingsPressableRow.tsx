@@ -1,6 +1,6 @@
 import { SymbolView } from "expo-symbols";
 
-import { FLEX_FIX } from "@/design-system";
+import { flex } from "@/lib/flex";
 
 interface Props {
 	label: string;
@@ -37,8 +37,7 @@ const label = Styles.defineStyle((s) => ({
 
 const styleSheet = Styles.defineSheet((s) => ({
 	row: {
-		...s.flex("flex-row", "items-center", "justify-between"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center", "justify-between"),
 		gap: s.spacing(3),
 		minHeight: 48,
 		paddingHorizontal: s.spacing(4),
@@ -55,8 +54,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.destructive,
 	},
 	trailing: {
-		...s.flex("flex-row", "items-center"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center"),
 		gap: s.spacing(2),
 	},
 	value: {

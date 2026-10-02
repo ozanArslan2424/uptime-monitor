@@ -1,5 +1,5 @@
-import { FLEX_FIX } from "@/design-system";
 import { Check } from "@/features/check/entity";
+import { flex } from "@/lib/flex";
 import { isAbsent, Maybe } from "@/lib/maybe";
 
 interface Props {
@@ -11,21 +11,33 @@ export function CheckDot(props: Props) {
 	const styles = dotStyleSheet.useWithColorScheme();
 
 	const dotStyle = (() => {
-		if (isAbsent(props.check)) return styles.dotUnknown;
-		if (props.check.ok) return styles.dotUp;
+		if (isAbsent(props.check)) {
+			return styles.dotUnknown;
+		}
+		if (props.check.ok) {
+			return styles.dotUp;
+		}
 		return styles.dotDown;
 	})();
 
 	if (props.withStatusText) {
 		const statusText = (() => {
-			if (isAbsent(props.check)) return "Not Checked";
-			if (props.check.ok) return "Up";
+			if (isAbsent(props.check)) {
+				return "Not Checked";
+			}
+			if (props.check.ok) {
+				return "Up";
+			}
 			return "Down";
 		})();
 
 		const statusTextStyle = (() => {
-			if (isAbsent(props.check)) return styles.statusUnknown;
-			if (props.check.ok) return styles.statusUp;
+			if (isAbsent(props.check)) {
+				return styles.statusUnknown;
+			}
+			if (props.check.ok) {
+				return styles.statusUp;
+			}
 			return styles.statusDown;
 		})();
 
@@ -60,8 +72,7 @@ export const dotStyleSheet = Styles.defineSheet((s) => ({
 		backgroundColor: s.color.mutedForeground,
 	},
 	statusRow: {
-		...s.flex("flex-row", "items-center"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center"),
 		gap: s.spacing(2),
 	},
 	statusUp: {

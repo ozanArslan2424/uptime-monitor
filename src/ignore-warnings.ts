@@ -10,6 +10,8 @@ LogBox.ignoreLogs(IGNORED);
 const warn = console.warn;
 console.warn = (...args: unknown[]) => {
 	const message = String(args[0]);
-	if (IGNORED.some((ignored) => message.includes(ignored))) return;
+	if (IGNORED.some((ignored) => message.includes(ignored))) {
+		return;
+	}
 	warn(...args);
 };

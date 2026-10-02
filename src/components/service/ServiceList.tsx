@@ -10,8 +10,12 @@ import { getDatabase } from "@/lib/db";
 import { isAbsent, Maybe } from "@/lib/maybe";
 
 function newest(a: Maybe<Check>, b: Maybe<Check>): Maybe<Check> {
-	if (isAbsent(a)) return b;
-	if (isAbsent(b)) return a;
+	if (isAbsent(a)) {
+		return b;
+	}
+	if (isAbsent(b)) {
+		return a;
+	}
 	return a.timestamp >= b.timestamp ? a : b;
 }
 
@@ -53,9 +57,11 @@ export function ServiceList() {
 			extraData={[checkingIds, latestChecks]}
 			contentInsetAdjustmentBehavior="automatic"
 			keyExtractor={(service) => String(service.id)}
-			refreshControl={
-				<refresh-control refreshing={false} onRefresh={refresh} tintColor={styles.tint.color} />
-			}
+			refreshControl=<refresh-control
+				refreshing={false}
+				onRefresh={refresh}
+				tintColor={styles.tint.color}
+			/>
 			ListEmptyComponent={<text style={styles.empty}>No services yet. Tap + to add one.</text>}
 			renderItem={({ item }) => (
 				<ServiceRow

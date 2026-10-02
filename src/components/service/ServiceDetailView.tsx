@@ -5,11 +5,11 @@ import { CheckResponseTimeGraph } from "@/components/check/CheckResponseTimeGrap
 import { CheckRow } from "@/components/check/CheckRow";
 import { ServiceLastCheckCard } from "@/components/service/ServiceLastCheckCard";
 import { ServiceStatTile } from "@/components/service/ServiceStatTile";
-import { FLEX_FIX } from "@/design-system";
 import { runServiceCheck } from "@/features/check/runServiceCheck";
 import { useIsChecking, useLatestCheck } from "@/features/check/store";
 import { useAsync } from "@/hooks/useAsync";
 import { getDatabase } from "@/lib/db";
+import { flex } from "@/lib/flex";
 import { isPresent } from "@/lib/maybe";
 
 const RECENT_LIMIT = 50;
@@ -107,13 +107,10 @@ export function ServiceDetailView() {
 			<CheckResponseTimeGraph checks={checks} />
 
 			<view style={styles.actionsRow}>
-				<pressable
-					style={[styles.primaryButton, isChecking && styles.disabled]}
-					onPress={handlePressCheckNow}
-					disabled={isChecking}
-				>
-					<text style={styles.primaryButtonText}>{isChecking ? "Checking…" : "Check now"}</text>
+				<pressable style={styles.secondaryButton} onPress={confirmDelete}>
+					<text style={styles.deleteButtonText}>Delete</text>
 				</pressable>
+
 				<pressable
 					style={styles.secondaryButton}
 					onPress={() =>
@@ -122,8 +119,13 @@ export function ServiceDetailView() {
 				>
 					<text style={styles.secondaryButtonText}>Edit</text>
 				</pressable>
-				<pressable style={styles.secondaryButton} onPress={confirmDelete}>
-					<text style={styles.deleteButtonText}>Delete</text>
+
+				<pressable
+					style={[styles.primaryButton, isChecking && styles.disabled]}
+					onPress={handlePressCheckNow}
+					disabled={isChecking}
+				>
+					<text style={styles.primaryButtonText}>{isChecking ? "Checking…" : "Check now"}</text>
 				</pressable>
 			</view>
 
@@ -172,8 +174,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.mutedForeground,
 	},
 	statsRow: {
-		...s.flex("flex-row"),
-		...FLEX_FIX,
+		...flex("flex-row"),
 		gap: s.spacing(3),
 	},
 	sectionLabel: {
@@ -182,8 +183,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.mutedForeground,
 	},
 	actionsRow: {
-		...s.flex("flex-row"),
-		...FLEX_FIX,
+		...flex("flex-row"),
 		gap: s.spacing(2),
 	},
 	primaryButton: {

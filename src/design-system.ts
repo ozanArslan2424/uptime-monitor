@@ -1,12 +1,5 @@
 import { defineDesignSystem } from "@ozanarslan/native-jsx";
 
-export const FLEX_FIX = {
-	// TODO: hack: react native release candidate changes these style types,
-	// flex helper doesn't set them but typescript still complains
-	position: "static",
-	boxSizing: "border-box",
-} as const;
-
 export const designSystem = defineDesignSystem({
 	palette: {
 		serviceUp: "#4ade80",

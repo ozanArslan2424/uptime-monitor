@@ -1,5 +1,5 @@
-import { FLEX_FIX } from "@/design-system";
 import { Check } from "@/features/check/entity";
+import { flex } from "@/lib/flex";
 
 function formatTimestamp(timestamp: number): string {
 	return new Date(timestamp).toLocaleString(undefined, {
@@ -60,8 +60,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		borderTopColor: s.color.border,
 	},
 	checkHeader: {
-		...s.flex("flex-row", "items-center"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center"),
 		gap: s.spacing(3),
 	},
 	checkError: {

@@ -1,8 +1,8 @@
 import { Stack, useRouter } from "expo-router";
 
 import { ServiceList } from "@/components/service/ServiceList";
-import { FLEX_FIX } from "@/design-system";
 import { useIcon } from "@/hooks/useIcon";
+import { flex } from "@/lib/flex";
 
 export function HomeView() {
 	const styles = styleSheet.useWithColorScheme();
@@ -49,8 +49,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		flex: 1,
 	},
 	headerActions: {
-		...s.flex("flex-row"),
-		...FLEX_FIX,
+		...flex("flex-row"),
 		gap: s.spacing(4),
 	},
 	headerAction: {

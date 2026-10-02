@@ -1,11 +1,11 @@
-import { FLEX_FIX } from "@/design-system";
 import { Check } from "@/features/check/entity";
+import { flex } from "@/lib/flex";
 import { isPresent } from "@/lib/maybe";
 
 const SPARKLINE_LIMIT = 30;
 
 interface Props {
-	checks: Array<Check>;
+	checks: Check[];
 }
 
 export function CheckResponseTimeGraph(props: Props) {
@@ -19,7 +19,9 @@ export function CheckResponseTimeGraph(props: Props) {
 		),
 	);
 
-	if (sparkline.length <= 0) return null;
+	if (sparkline.length <= 0) {
+		return null;
+	}
 
 	return (
 		<view style={styles.card}>
@@ -70,8 +72,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.mutedForeground,
 	},
 	sparkline: {
-		...s.flex("flex-row", "items-end"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-end"),
 		height: 64,
 		gap: 2,
 	},

@@ -12,7 +12,9 @@ export class ExternalStore<T> {
 	}
 
 	notify() {
-		for (const listener of this.listeners) listener();
+		for (const listener of this.listeners) {
+			listener();
+		}
 	}
 
 	// avoid losing this by using arrow

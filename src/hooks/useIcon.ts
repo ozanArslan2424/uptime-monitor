@@ -14,11 +14,15 @@ export function useIcon(args: Args): SFSymbol | ImageSourcePropType | undefined 
 	const [androidSource, setAndroidSource] = useState<ImageSourcePropType>();
 
 	useEffect(() => {
-		if (Platform.OS !== "android") return;
+		if (Platform.OS !== "android") {
+			return;
+		}
 
 		let cancelled = false;
 		unstable_getMaterialSymbolSourceAsync(args.android, args.size, args.color).then((source) => {
-			if (!cancelled) setAndroidSource(source ?? undefined);
+			if (!cancelled) {
+				setAndroidSource(source ?? undefined);
+			}
 		});
 
 		return () => {

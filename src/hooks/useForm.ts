@@ -10,8 +10,11 @@ function patchErrors<F>(
 	error: string | null,
 ): FormErrors<F> {
 	const next: FormErrors<F> = { ...prev };
-	if (error === null) delete next[key];
-	else next[key] = error;
+	if (error === null) {
+		delete next[key];
+	} else {
+		next[key] = error;
+	}
 	return next;
 }
 
@@ -54,7 +57,9 @@ export function useForm<F extends object>(args: Args<F>) {
 		startPending(async () => {
 			const nextErrors = runValidator(args.validate, values);
 			setErrors(nextErrors);
-			if (Object.keys(nextErrors).length > 0) return;
+			if (Object.keys(nextErrors).length > 0) {
+				return;
+			}
 
 			try {
 				await args.onSubmit(values);

@@ -1,8 +1,8 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
-import { FLEX_FIX } from "@/design-system";
 import { useSettings } from "@/features/settings/store";
 import { useForm } from "@/hooks/useForm";
+import { flex } from "@/lib/flex";
 
 export interface ServiceFormValues {
 	name: string;
@@ -230,8 +230,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.destructive,
 	},
 	segmented: {
-		...s.flex("flex-row"),
-		...FLEX_FIX,
+		...flex("flex-row"),
 		gap: s.spacing(2),
 	},
 	segment: {
@@ -257,8 +256,7 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.accentForeground,
 	},
 	switchRow: {
-		...s.flex("flex-row", "items-center", "justify-between"),
-		...FLEX_FIX,
+		...flex("flex-row", "items-center", "justify-between"),
 	},
 	switchLabel: {
 		...s.text.base,

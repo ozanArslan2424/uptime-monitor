@@ -9,34 +9,14 @@ export function ServiceEditView() {
 	const styles = styleSheet.useWithColorScheme();
 	const params = useLocalSearchParams<{ id: string }>();
 	const router = useRouter();
+	const serviceId = Number(params.id);
 	const service = useAsync(
 		async (id: number) => {
 			const db = await getDatabase();
-			const service = await db.repositories.service.select(id);
-			// TODO: do something on not found
-			if (!service) throw "TODO";
-			return service;
+			return await db.repositories.service.select(id);
 		},
-		{ args: [Number(params.id)] },
+		{ args: [serviceId] },
 	);
-
-	async function handleSubmit(values: ServiceFormValues) {
-		const db = await getDatabase();
-		await db.repositories.service.update(
-			new Service({
-				id: Number(params.id),
-				name: values.name.trim(),
-				url: values.url,
-				method: values.method,
-				expectedStatus: Number(values.expectedStatus),
-				keyword: values.keyword,
-				timeoutMs: Number(values.timeoutMs),
-				enabled: values.enabled,
-				createdAt: new Date().toISOString(),
-			}),
-		);
-		router.back();
-	}
 
 	if (service.isPending) {
 		return (
@@ -48,6 +28,35 @@ export function ServiceEditView() {
 
 	if (service.error) {
 		return <text style={styles.empty}>{service.error.message}</text>;
+	}
+
+	if (!service.data) {
+		return (
+			<view style={styles.notFound}>
+				<text style={styles.empty}>This service no longer exists.</text>
+				<pressable style={styles.button} onPress={() => router.back()}>
+					<text style={styles.buttonText}>Close</text>
+				</pressable>
+			</view>
+		);
+	}
+
+	async function handleSubmit(values: ServiceFormValues) {
+		const db = await getDatabase();
+		await db.repositories.service.update(
+			new Service({
+				id: serviceId,
+				name: values.name.trim(),
+				url: values.url,
+				method: values.method,
+				expectedStatus: Number(values.expectedStatus),
+				keyword: values.keyword,
+				timeoutMs: Number(values.timeoutMs),
+				enabled: values.enabled,
+				createdAt: new Date().toISOString(),
+			}),
+		);
+		router.back();
 	}
 
 	return (
@@ -80,5 +89,23 @@ const styleSheet = Styles.defineSheet((s) => ({
 		color: s.color.mutedForeground,
 		textAlign: "center",
 		marginTop: s.spacing(8),
+	},
+	notFound: {
+		flex: 1,
+		alignItems: "center",
+		gap: s.spacing(4),
+	},
+	button: {
+		height: 44,
+		paddingHorizontal: s.spacing(6),
+		alignItems: "center",
+		justifyContent: "center",
+		borderRadius: s.radius.md,
+		backgroundColor: s.color.secondary,
+	},
+	buttonText: {
+		...s.text.sm,
+		fontWeight: "600",
+		color: s.color.secondaryForeground,
 	},
 }));
