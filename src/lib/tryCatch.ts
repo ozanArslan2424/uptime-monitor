@@ -1,6 +1,6 @@
-export type Result<T, E = Error> = [T, null] | [null, E];
+type Result<T, E = Error> = [T, null] | [null, E];
 
-export function toError(err: unknown): Error {
+function toError(err: unknown): Error {
 	return err instanceof Error ? err : new Error(String(err));
 }
 

@@ -50,7 +50,16 @@
 					}
 				}
 			],
-			["expo-build-properties", { "android": { "usesCleartextTraffic": true } }],
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"usesCleartextTraffic": true,
+						"enableMinifyInReleaseBuilds": true,
+						"enableShrinkResourcesInReleaseBuilds": true
+					}
+				}
+			],
 			"./plugins/withReleaseSigning"
 		],
 		"experiments": {

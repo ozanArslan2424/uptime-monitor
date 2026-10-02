@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function CheckDot(props: Props) {
-	const styles = dotStyleSheet.useWithColorScheme();
+	const styles = styleSheet.useWithColorScheme();
 
 	const dotStyle = (() => {
 		if (isAbsent(props.check)) {
@@ -58,7 +58,7 @@ const dot = Styles.defineStyle({
 	borderRadius: 5,
 });
 
-export const dotStyleSheet = Styles.defineSheet((s) => ({
+const styleSheet = Styles.defineSheet((s) => ({
 	dotUp: {
 		...dot,
 		backgroundColor: s.color.serviceUp,

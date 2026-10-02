@@ -7,7 +7,7 @@ export interface Settings {
 	allowHttp: boolean;
 }
 
-export const DEFAULT_SETTINGS: Settings = {
+const DEFAULT_SETTINGS: Settings = {
 	allowHttp: false,
 };
 
