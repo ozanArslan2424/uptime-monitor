@@ -33,9 +33,13 @@ function findPackageDir(name: string, fromDir: string): string | undefined {
 	let dir = fromDir;
 	while (true) {
 		const candidate = join(dir, "node_modules", name, "package.json");
-		if (existsSync(candidate)) return dirname(realpathSync(candidate));
+		if (existsSync(candidate)) {
+			return dirname(realpathSync(candidate));
+		}
 		const parent = dirname(dir);
-		if (parent === dir) return undefined;
+		if (parent === dir) {
+			return undefined;
+		}
 		dir = parent;
 	}
 }
@@ -50,8 +54,12 @@ function readLicenseText(dir: string): string | undefined {
 }
 
 function getLicenseType(pkg: PackageJson): string {
-	if (typeof pkg.license === "string") return pkg.license;
-	if (pkg.license?.type) return pkg.license.type;
+	if (typeof pkg.license === "string") {
+		return pkg.license;
+	}
+	if (pkg.license?.type) {
+		return pkg.license.type;
+	}
 	return "Unknown";
 }
 
@@ -64,11 +72,15 @@ const seen = new Map<string, License>();
 
 function visit(name: string, fromDir: string) {
 	const dir = findPackageDir(name, fromDir);
-	if (!dir) return; // optional dependency not installed on this platform
+	if (!dir) {
+		return;
+	} // optional dependency not installed on this platform
 
 	const pkg = readJson(join(dir, "package.json"));
 	const key = `${pkg.name}@${pkg.version}`;
-	if (seen.has(key)) return;
+	if (seen.has(key)) {
+		return;
+	}
 
 	seen.set(key, {
 		name: pkg.name,

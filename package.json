@@ -3,6 +3,7 @@
 	"name": "uptime-monitor",
 	"version": "1.0.0",
 	"private": true,
+	"type": "module",
 	"main": "expo-router/entry",
 	"scripts": {
 		"start": "expo start",
@@ -17,7 +18,7 @@
 	},
 	"dependencies": {
 		"@expo/ui": "~58.0.9",
-		"@ozanarslan/native-jsx": "/Users/ozan/dev/packages/native-jsx/ozanarslan-native-jsx-0.1.0.tgz",
+		"@ozanarslan/native-jsx": "^0.1.0",
 		"expo": "~58.0.0",
 		"expo-application": "~58.0.2",
 		"expo-build-properties": "~58.0.9",
@@ -49,6 +50,7 @@
 		"@types/react": "~19.3.0",
 		"oxfmt": "^0.70.0",
 		"oxlint": "^1.86.0",
+		"oxlint-config-universe": "^0.2.0",
 		"typescript": "~6.0.3"
 	}
 }
